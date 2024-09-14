@@ -8,6 +8,10 @@ const props = defineProps({
   correct_answer: String,
 });
 
+const emits = defineEmits(["change"]);
+const onChange = (event) => {
+  emits("change", event);
+};
 const model = defineModel();
 const classes = computed(() => ({
   disabled: props.disabled,
@@ -28,6 +32,7 @@ const classes = computed(() => ({
       :value="value"
       :disabled="disabled"
       v-model="model"
+      @change="onChange"
     />
     {{ value }}
   </label>
