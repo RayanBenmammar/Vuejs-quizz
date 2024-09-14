@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import Quizz from "./components/quizz.vue";
 
 const quizz = ref(null);
 const state = ref("loading");
@@ -24,10 +25,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="state === 'error'">
-    <p>Impossible de charger le questionnaire</p>
+  <div class="container">
+    <div v-if="state === 'error'">
+      <p>Impossible de charger le questionnaire</p>
+    </div>
+    <div :aria-busy="state === 'loading'">
+      <Quizz :quizz="quizz" v-if="quizz"></Quizz>
+    </div>
   </div>
-  <div :aria-busy="state === 'loading'">{{ quizz }}</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  margin-top: 2rem;
+}
+</style>
