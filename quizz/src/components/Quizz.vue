@@ -32,6 +32,6 @@ const addAnswer = (answer) => {
       @answer="addAnswer"
       v-if="state === 'question'"
     />
-    <Recap v-if="state === 'recap'" />
+    <Recap :quizz="props.quizz" :answers="answers" v-if="state === 'recap'" />
   </div>
 </template>
